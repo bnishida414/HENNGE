@@ -1,8 +1,31 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	//"strconv"
+)
 
-func sumsquare(ints string) {
-	
-	fmt.Println("Hello, world.")
+func main() {
+	// Initialize the scanner
+	scanner := bufio.NewScanner(os.Stdin)
+	// Take in the first line of input
+	scanner.Scan()
+
+	// N is the number of test cases to follow
+	N := scanner.Text()
+	fmt.Println("Test cases:", N)
+
+	// We don't have access to for statements,
+	// so we'll have to use recursion.
+
+}
+
+func testCaseLoop() {
+
+}
+
+func integerLoop() {
+
 }
