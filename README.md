@@ -1,5 +1,4 @@
 # HENNGE Global Internship Program Admission Challenge
-
 ## Description
 - We want you to calculate the sum of squares of given integers, excluding any negatives.
 - The first line of the input will be an integer N (1 <= N <= 100), indicating the number of test cases to follow.
@@ -21,7 +20,7 @@
 5
 9 6 -53 32 16
 ```
-###Sample Output
+### Sample Output
 ```
 206
 1397
