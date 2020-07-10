@@ -1,10 +1,8 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
-	"strconv"
 )
 
 // Important notes:
@@ -12,23 +10,25 @@ import (
 // 2. No for statements
 // 3. Negative integers are ignored
 
-// To handle note 1: here is our slice to store
-// our values before sending to output
+// Handling note 1: use a slice to store our values
+// before sending to output
 var sumSquares []int
 
 func main() {
-	// Initialize the scanner
-	scanner := bufio.NewScanner(os.Stdin)
-	// Take in the first line of input
-	scanner.Scan()
-
 	// N is the number of test cases to follow
-	N, _ := strconv.Atoi(scanner.Text())
-	fmt.Println("Test cases:", N)
+	var N int
+	// Read input N, output error if necessary
+	if _, err := fmt.Scanf("%d\n", &N); err != nil {
+		fmt.Println(err)
+		os.Exit(2)
+	}
 
-	// We don't have access to for statements,
-	// so we'll have to use recursion.
+	// Handling note 2: use recursion instead of
+	// for statements
 	testCaseLoop(N)
+
+	// Print out the answer
+	printArr(N, 0)
 }
 
 // Loop through each test case
@@ -37,19 +37,50 @@ func testCaseLoop(N int) {
 	if N <= 0 {
 		return
 	}
-	// Save the sum of squares for this test case
 
-	// Recursion!
+	// X is the number of integers to follow
+	var X int
+	if _, err := fmt.Scanf("%d\n", &X); err != nil {
+		fmt.Println(err)
+		os.Exit(2)
+	}
+
+	// Save sum of squares into slice
+	sumSquares = append(sumSquares, integerLoop(X, 0))
+
+	// Next test case!
 	testCaseLoop(N - 1)
 }
 
-// Loop through each integer and return its square
-func integerLoop(X int) {
+// Add each integer's square to the sum, recursively
+func integerLoop(X int, sum int) int {
 	// Check base case
-	if X == 0 {
+	if X <= 0 {
+		fmt.Scanln()
+		return sum
+	}
+
+	// Add square of next integer to sum
+	var Yn int
+	fmt.Scanf("%d", &Yn)
+	// Handling note 3: ignore negatives
+	if Yn >= 0 {
+		sum += Yn * Yn
+	}
+
+	// Next integer!
+	return integerLoop(X-1, sum)
+}
+
+// Print the sums of squares
+func printArr(N int, ct int) {
+	if ct >= N {
 		return
 	}
-	if 
-	// Recursion!
-	integerLoop(X - 1)
+	fmt.Print(sumSquares[ct])
+	// To avoid extra newline at the end
+	if ct < N-1 {
+		fmt.Println()
+	}
+	printArr(N, ct+1)
 }
